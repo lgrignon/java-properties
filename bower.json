@@ -1,0 +1,26 @@
+{
+  "name": "java-properties",
+  "main": "java-properties",
+  "version": "0.1.0",
+  "homepage": "https://github.com/lgrignon/java-properties",
+  "authors": [
+  	"Matt Steele",
+    "Louis Grignon"
+  ],
+  "main": "lib/properties.js",
+  "license": "MIT",
+  "description": "Converts a Java Properties input to a Javascript Object",
+  "keywords": [
+    "java",
+    "properties",
+    "javascript",
+    "file"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

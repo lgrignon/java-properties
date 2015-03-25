@@ -1,9 +1,9 @@
 # java-properties
 
-Read Java .properties files. Supports adding dynamically some files and array key value (same key multiple times)
+Read Java .properties files from different sources. Supports adding dynamically some files and array key value (same key multiple times)
 
 ## Getting Started
-Install the module with: `npm install java-properties`
+Install the module with: `bower install java-properties`
 
 ## Documentation
 ```javascript
@@ -57,21 +57,9 @@ Install the module with: `npm install java-properties`
     myOtherFile.addFile('example.properties');
     myOtherFile.addFile('example2.properties');
 ```
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-0.1.0 Initial commit
-0.1.5: Support empty strings
-0.1.6 New API: `getKeys`
-0.1.7 New APIs: `addFile` and `reset`
-0.1.8 Add array key (the same key many time in files)
-
-0.2.0 Wrap features into a class to be able to have multiple running contexts
-
-0.2.1 Add default value to get method. Add getInt and getFloat to get an integer or float value
-
-0.2.2 Add getBoolean method to get a value as a boolean. Accepted values are true, TRUE, false, FALSE, 0, 1
+0.1.0 Initial commit (forked from https://github.com/mattdsteele/java-properties)
 
 ## License
 Licensed under the MIT license.
