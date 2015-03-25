@@ -12,6 +12,9 @@ declare class PropertiesFile {
     set(key: string, value: any): void;
     interpolate(s: string): string;
     getKeys(): string[];
+    getEntries(): {
+        [key: string]: any;
+    };
     reset(): void;
     static fromFilePath(path: string): PropertiesFile;
     static fromContent(content: string): PropertiesFile;

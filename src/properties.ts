@@ -113,6 +113,10 @@ class PropertiesFile {
         return keys;
     }
 
+    public getEntries(): { [key: string]: any } {
+        return this.entries;
+    }
+
     public reset() {
         this.entries = {};
     }

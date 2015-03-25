@@ -7,15 +7,13 @@ Install the module with: `bower install java-properties`
 
 ## Documentation
 ```javascript
-    var properties = require('java-properties');
-
-    var values = properties.of('values.properties');
+    var values = PropertiesFile.fromFilePath('messages/default.properties');
 
     //Read a value from the properties file
     values.get('a.key'); //returns value of a.key
 
     //Add an additional file's properties
-    values.add('anotherfile.properties');
+    values.addFileFromPath('anotherfile.properties');
 
     //Clear out all values
     values.reset();
@@ -35,9 +33,6 @@ Install the module with: `bower install java-properties`
     // returns all the keys
     values.getKeys();
     ...
-    // adds another file the properties list
-    values.addFile('anotherFile.properties');
-    ...
     // empty the keys previously loaded
     values.reset();
     ...
@@ -48,17 +43,13 @@ Install the module with: `bower install java-properties`
     values.get('an.array.key'); // returns [value1, value2]
     
     // Multiple contexts
-    var myFile = new PropertiesFile(
-        'example.properties',
-        'arrayExample.properties');
-    myFile.get('arrayKey');
-    
-    var myOtherFile = new PropertiesFile();
-    myOtherFile.addFile('example.properties');
-    myOtherFile.addFile('example2.properties');
+    var myFile = PropertiesFile.fromFilePath('example.properties');
+    myFile.addFileFromPath('example2.properties');
+    myFile.addFileFromContent('my.prop = test\nmy.other.prop = toto');
 ```
 
 ## Release History
+0.1.1 Fixed documentation + PropertiesFile.getEntries
 0.1.0 Initial commit (forked from https://github.com/mattdsteele/java-properties)
 
 ## License
