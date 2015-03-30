@@ -42,18 +42,25 @@ class PropertiesFile {
         }
     }
 
-    public addFileFromPath(path: string): void {
-        var req = new XMLHttpRequest();
-        req.open('GET', path, false);
-        req.onload = (event: Event) => {
-            var propertiesContent: string = req.responseText;
-            this.addContent(propertiesContent);
-        };
-        req.onerror = (err: ErrorEvent) => {
-            throw err;
-        };
+    public addFileFromPath(path: string): boolean {
+        try {
+            var req = new XMLHttpRequest();
+            req.open('GET', path, false);
 
-        req.send();
+            req.onload = (event: Event) => {
+                var propertiesContent: string = req.responseText;
+                this.addContent(propertiesContent);
+            };
+            req.onerror = (err: ErrorEvent) => {
+                throw err;
+            };
+
+            req.send();
+            return true;
+        } catch (e) {
+            console.error('cannot load ' + path, e);
+            return false;
+        }
     }
 
     public get(key: string, defaultValue: any = null): any {
@@ -93,11 +100,11 @@ class PropertiesFile {
         return !(/^(false|0)$/i).test(b) && !!b;
     }
 
-    public set(key: string, value: any) {
+    public set(key: string, value: any): void {
         this.entries[key] = value;
     }
 
-    public interpolate(s: string) {
+    public interpolate(s: string): string {
         return s
             .replace(/\\\\/g, '\\')
             .replace(/\$\{([A-Za-z0-9\.]*)\}/g,(match: string) => {
@@ -117,7 +124,7 @@ class PropertiesFile {
         return this.entries;
     }
 
-    public reset() {
+    public reset(): void {
         this.entries = {};
     }
 

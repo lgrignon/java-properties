@@ -3,7 +3,7 @@ declare class PropertiesFile {
     constructor();
     makeKeys(line: any): void;
     addContent(propertiesContent: string): void;
-    addFileFromPath(path: string): void;
+    addFileFromPath(path: string): boolean;
     get(key: string, defaultValue?: any): any;
     getInt(key: string, defaultIntValue?: number): number;
     getFloat(key: string, defaultFloatValue?: number): number;
