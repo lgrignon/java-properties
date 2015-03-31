@@ -1,7 +1,7 @@
 declare class PropertiesFile {
     private entries;
     constructor();
-    makeKeys(line: any): void;
+    private makeKeys(line);
     addContent(propertiesContent: string): void;
     addFileFromPath(path: string): boolean;
     get(key: string, defaultValue?: any): any;
@@ -13,7 +13,7 @@ declare class PropertiesFile {
     interpolate(s: string): string;
     getKeys(): string[];
     getEntries(): {
-        [key: string]: any;
+        [key: string]: string;
     };
     reset(): void;
     static fromFilePath(path: string): PropertiesFile;

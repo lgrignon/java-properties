@@ -6,32 +6,23 @@
 
 // Construct a PropertiesFile class to handle all properties of a specifice file or group of file
 class PropertiesFile {
-    private entries: { [key: string]: any };
+    private entries: { [key: string]: string };
 
     constructor() {
         this.entries = {};
     }
 
-    public makeKeys(line): void {
-        if (line && line.indexOf('#') !== 0) {
+    private makeKeys(line: string): void {
+        if (line == null) {
+            return;   
+        }
+        
+        line = line.trim();
+        if (line.length > 0 && line.indexOf('#') !== 0) {
             var splitIndex = line.indexOf('=');
             var key = line.substring(0, splitIndex).trim();
             var value = line.substring(splitIndex + 1).trim();
-            // if keys already exists ...
-            if (this.entries.hasOwnProperty(key)) {
-                // if it is already an Array
-                if (Array.isArray(this.entries[key])) {
-                    // just push the new value
-                    this.entries[key].push(value);
-                } else {
-                    // transform the value into Array
-                    var oldValue = this.entries[key];
-                    this.entries[key] = [oldValue, value];
-                }
-            } else {
-                // the key does not exists
-                this.entries[key] = value;
-            }
+            this.entries[key] = value;
         }
     }
 
@@ -65,15 +56,7 @@ class PropertiesFile {
 
     public get(key: string, defaultValue: any = null): any {
         if (this.entries.hasOwnProperty(key)) {
-            if (Array.isArray(this.entries[key])) {
-                var ret = [];
-                for (var i = 0; i < this.entries[key].length; i++) {
-                    ret[i] = this.interpolate(this.entries[key][i]);
-                }
-                return ret;
-            } else {
-                return typeof this.entries[key] === 'undefined' ? '' : this.interpolate(this.entries[key]);
-            }
+            return typeof this.entries[key] === 'undefined' ? '' : this.interpolate(this.entries[key]);
         }
         return defaultValue;
     }
@@ -120,7 +103,7 @@ class PropertiesFile {
         return keys;
     }
 
-    public getEntries(): { [key: string]: any } {
+    public getEntries(): { [key: string]: string } {
         return this.entries;
     }
 

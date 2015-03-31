@@ -49,6 +49,7 @@ Install the module with: `bower install java-properties`
 ```
 
 ## Release History
+0.1.3 Trim keys and values + override entries if newer added<br />
 0.1.2 Do not crash if file could not be loaded <br />
 0.1.1 Fixed documentation + PropertiesFile.getEntries <br />
 0.1.0 Initial commit (forked from https://github.com/mattdsteele/java-properties)
